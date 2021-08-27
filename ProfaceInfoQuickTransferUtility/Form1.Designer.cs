@@ -39,10 +39,10 @@ namespace ProfaceInfoQuickTransferUtility
             // 
             this.pbProgress.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.pbProgress.ForeColor = System.Drawing.Color.LawnGreen;
-            this.pbProgress.Location = new System.Drawing.Point(12, 512);
+            this.pbProgress.Location = new System.Drawing.Point(12, 516);
             this.pbProgress.Maximum = 1000;
             this.pbProgress.Name = "pbProgress";
-            this.pbProgress.Size = new System.Drawing.Size(629, 29);
+            this.pbProgress.Size = new System.Drawing.Size(430, 29);
             this.pbProgress.TabIndex = 0;
             this.pbProgress.Visible = false;
             // 
@@ -81,13 +81,13 @@ namespace ProfaceInfoQuickTransferUtility
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(653, 577);
+            this.ClientSize = new System.Drawing.Size(460, 577);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.btnLoadSettings);
             this.Controls.Add(this.rtbConsole);
             this.Controls.Add(this.pbProgress);
             this.Name = "FrmMain";
-            this.Text = "Proface Info Quick Transfer Utility";
+            this.Text = "Proface Info Quick Transfer Utility v1.0.0";
             this.Load += new System.EventHandler(this.FrmMain_Load);
             this.ResumeLayout(false);
 

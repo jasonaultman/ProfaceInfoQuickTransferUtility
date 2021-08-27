@@ -35,7 +35,7 @@ namespace ProfaceInfoQuickTransferUtility
                 this.Invoke((MethodInvoker)delegate () { SetTextBox(text); });
                 return;
             }
-           rtbConsole.Text += text+"\n";
+            rtbConsole.Text += text+"\n";
         }
 
         private void GetProfaceWords(WorkStationPLC plc)
@@ -89,6 +89,9 @@ namespace ProfaceInfoQuickTransferUtility
 
         private void btnLoadSettings_Click(object sender, EventArgs e)
         {
+            var stepSize = pbProgress.Maximum / gWorkstationNames.Count;
+            pbProgress.Step = stepSize;
+            pbProgress.Show();
             try
             {
                 foreach (var workstation in gWorkstationNames)
@@ -100,10 +103,8 @@ namespace ProfaceInfoQuickTransferUtility
                 {
                     GetProfaceWords(workStation);
                     SetTextBox(workStation.PLCName + " " + workStation.WsId + " " + workStation.EncoderValue);
+                    button1.Enabled = true;
                 }
-
-                btnLoadSettings.Enabled = true;
-
             }
             catch(Exception ex)
             {
@@ -114,6 +115,10 @@ namespace ProfaceInfoQuickTransferUtility
 
         private void button1_Click(object sender, EventArgs e)
         {
+            var stepSize = pbProgress.Maximum / gWorkstationNames.Count;
+            pbProgress.Step = stepSize;
+            pbProgress.Show();
+
             if (workStationModelList.Count > 0)
             {
                 try
@@ -121,6 +126,7 @@ namespace ProfaceInfoQuickTransferUtility
                     foreach (WorkStationPLC workStation in workStationModelList)
                     {
                         SetProfaceWords(workStation);
+                        SetTextBox($"Sending PLC Data to {workStation.PLCName}");
                     }
 
                 }
@@ -128,6 +134,8 @@ namespace ProfaceInfoQuickTransferUtility
                 {
                     SetTextBox("Error setting Proface words");
                 }
+                pbProgress.Hide();
+                btnLoadSettings.Enabled = true;
             }
             else SetTextBox("There are no PLCs configured to send data to.");
 
